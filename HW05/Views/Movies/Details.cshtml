@@ -1,0 +1,40 @@
+﻿@model HW03.Models.Movie
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg p-4">
+        <h1 class="text-center text-primary">Movie Details</h1>
+        <hr />
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <img src="@Html.DisplayFor(model => model.PosterPath)" class="img-fluid rounded" alt="Movie Poster" />
+            </div>
+            <div class="col-md-8">
+                <dl class="row">
+                    <dt class="col-sm-4 fw-bold">Title:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Title)</dd>
+
+                    <dt class="col-sm-4 fw-bold">Year:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Year)</dd>
+
+                    <dt class="col-sm-4 fw-bold">Director:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.DirectorsName)</dd>
+
+                    <dt class="col-sm-4 fw-bold">Genre:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Genre)</dd>
+
+                    <dt class="col-sm-4 fw-bold">Synopsis:</dt>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Synopsis)</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Edit</a>
+            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
