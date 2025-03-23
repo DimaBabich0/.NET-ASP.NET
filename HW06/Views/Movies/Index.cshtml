@@ -1,0 +1,35 @@
+﻿@model IEnumerable<HW03.Models.Movie>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Movies</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create new item</a>
+</p>
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div class="row mb-4 border p-3">
+            <div class="col-md-2 d-flex align-items-center">
+                <img src="@Html.DisplayFor(modelItem => item.PosterPath)" class="img-fluid rounded" alt="Movie Poster" />
+            </div>
+            <div class="col-md-10">
+                <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
+                <p><strong>Year:</strong> @Html.DisplayFor(modelItem => item.Year)</p>
+                <p><strong>Genre:</strong> @Html.DisplayFor(modelItem => item.Genre)</p>
+                <p><strong>Director:</strong> @Html.DisplayFor(modelItem => item.DirectorsName)</p>
+                <p><strong>Synopsis:</strong> @Html.DisplayFor(modelItem => item.Synopsis)</p>
+                <div>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
