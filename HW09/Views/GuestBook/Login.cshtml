@@ -1,0 +1,41 @@
+﻿@{
+	ViewData["Title"] = "Login";
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+	<div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+
+<div class="container mt-5 row justify-content-center">
+	<div class="col-md-6">
+		<div class="card shadow-sm">
+			<div class="card-header text-center">
+				<h3>Log In</h3>
+			</div>
+
+			<div class="card-body">
+				<form method="post" asp-controller="GuestBook" asp-action="Login">
+					<div class="mb-3">
+						<label for="login" class="form-label">Login</label>
+						<input type="text" class="form-control" id="login" name="login" required>
+					</div>
+
+					<div class="mb-3">
+						<label for="password" class="form-label">Password</label>
+						<input type="password" class="form-control" id="password" name="password" required>
+					</div>
+
+					<button type="submit" class="btn btn-primary w-100">Log In</button>
+				</form>
+			</div>
+			<div class="card-footer text-center">
+				<small>
+					Not have an account?
+					<a asp-action="Registration">Register</a>
+				</small>
+			</div>
+		</div>
+	</div>
+</div>
