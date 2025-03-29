@@ -1,0 +1,54 @@
+﻿@model List<Message>
+@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Index";
+    var userLogin = Context.Session.GetString("UserLogin");
+}
+
+<h2 class="text-center my-4">Guest book</h2>
+
+<div class="container">
+    <div class="card border-0">
+        <div class="card-body">
+            <div class="chat-box" style="max-height: 300px; overflow-y: auto;">
+                @foreach (var message in Model)
+                {
+                    <div class="mb-3">
+                        <div class="p-2 border bg-light">
+                            <div class="d-flex justify-content-between">
+                                <strong>@message.User.Login</strong>
+                                <span class="text-muted ms-3">@message.MessageDate.ToString("HH:mm dd.MM.yyyy")</span>
+                            </div>
+                            <div class="mt-1">
+                                <p class="mb-0">@message.Text</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(userLogin))
+    {
+        <div class="mt-3">
+            <form method="post" asp-action="AddMessage">
+                <div class="input-group">
+                    <textarea class="form-control" name="text" rows="3" placeholder="Enter a message..." required></textarea>
+                    <button class="btn btn-primary" type="submit">Send</button>
+                </div>
+            </form>
+
+            <form method="post" asp-action="Logout" class="mt-2 text-center">
+                <button class="btn btn-danger">Log out</button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <p class="text-center text-muted mt-3">
+            Log in to leave a message.
+        </p>
+    }
+</div>
