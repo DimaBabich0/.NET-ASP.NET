@@ -1,0 +1,38 @@
+﻿@model List<HW12.Models.Note>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+    <div class="d-flex">
+        <form class="me-2" asp-controller="Home" asp-action="DisplayNotes" method="get">
+            <button type="submit" class="btn btn-primary">Display Notes</button>
+        </form>
+
+        <form class="me-2" asp-controller="Home" asp-action="SaveToFile" method="post">
+            <button type="submit" class="btn btn-secondary">Save Notes to File</button>
+        </form>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <h2>Notes</h2>
+        @foreach (var note in Model)
+        {
+            <strong>Name:</strong> @note.Name <br>
+            <strong>Text:</strong> @note.Text <br>
+            <strong>Date:</strong> @note.Date <br>
+            <strong>Tags:</strong> @(note.Tags.Any() ? string.Join(", ", note.Tags) : "No tags")
+            <hr>
+        }
+    }
+</div>
+@section Scripts {
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            alert('@ViewBag.Message'); // JavaScript alert for showing message
+        </script>
+    }
+}
