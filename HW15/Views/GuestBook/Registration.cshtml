@@ -1,0 +1,19 @@
+﻿
+<div class="row">
+	@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+	{
+		<div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+	}
+	<div class="card-body">
+		<form method="post" asp-action="Registration">
+			<div class="mb-3">
+				<label for="login" class="form-label">Login</label>
+				<input type="text" class="form-control" id="login" name="login" required>
+			</div>
+			<div class="mb-3">
+				<label for="password" class="form-label">Password</label>
+				<input type="password" class="form-control" id="password" name="password" required>
+			</div>
+		</form>
+	</div>
+</div>
